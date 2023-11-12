@@ -1,0 +1,113 @@
+##Diagonal Traverse in 2D Array
+class Solution {
+    public int[] findDiagonalOrder(int[][] mat) {
+        if (mat == null || mat.length == 0) 
+            return new int[0];
+
+        int row = 0, col = 0, pos = 0, m = mat.length, n=mat[0].length, output [] = new int[m * n];
+
+        for (pos = 0; pos < m * n; pos++) {
+            output[pos] = mat[row][col];
+
+            if ((row + col) % 2 == 0) {
+                // The direction is always up when the sum of row & col is even
+        
+                // For last column, go down
+                if (col == n-1) { 
+                    row++; 
+                }                
+        
+                // For first row & non-last columns, go right
+                else if (row == 0) { 
+                    col++; 
+                }
+        
+                // For not first row & non-last columns, go up and to the right
+                else { 
+                    row--; 
+                    col++; 
+                }
+
+            } else {
+                // The direction is always down when the sum of row & col is odd
+
+                // For last row, go right
+                if (row == m-1) { 
+                    col++; 
+                } 
+        
+                //  For non-last row & first column, go down
+                else if (col == 0) { 
+                    row++; 
+                }
+        
+                // For non-last row & non-first column, go down and to the left
+                else { 
+                    row++; 
+                    col--; 
+                }
+            }
+        }
+        return output;
+    }
+}
+
+##Spiral Traverse in 2D Matrix
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> res = new ArrayList<Integer>();
+        if(matrix.length == 0 || matrix[0].length == 0) return res;
+        
+        int top = 0;
+        int bottom = matrix.length-1;
+        int left = 0;
+        int right = matrix[0].length-1;
+        
+        while(true){
+            for(int i = left; i <= right; i++) res.add(matrix[top][i]);
+            top++;
+            if(left > right || top > bottom) break;
+            
+            for(int i = top; i <= bottom; i++) res.add(matrix[i][right]);
+            right--;
+            if(left > right || top > bottom) break;
+            
+            for(int i = right; i >= left; i--) res.add(matrix[bottom][i]);
+            bottom--;
+            if(left > right || top > bottom) break;
+            
+            for(int i = bottom; i >= top; i--) res.add(matrix[i][left]);
+            left++;
+            if(left > right || top > bottom) break;
+        }
+        
+        return res;
+    }
+}
+
+## Parcal's Triangle
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> pascal = new ArrayList<>();
+        for (int i = 1; i <= numRows; i++) {
+            if (i == 1) {
+                List<Integer> first = new ArrayList<>();
+                first.add(1);
+                pascal.add(first);
+            } else {
+                List<Integer> prev = pascal.get(i - 2);
+                List<Integer> nth = new ArrayList<>();
+                for (int j = 0; j < i; j++) {
+                    if (j == 0 || j == prev.size()) {
+                        nth.add(1);
+                    } else {
+                        int sum = prev.get(j - 1) + prev.get(j);
+                        nth.add(sum);
+                    }
+                }
+                pascal.add(nth);
+            }
+        }
+        return pascal;
+    }
+}
