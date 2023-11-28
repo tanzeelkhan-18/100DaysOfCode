@@ -1,0 +1,25 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+
+class Person:
+
+    #create your class here
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+
+    def setValue(self, name, age):
+        self.name = name
+        self.age = age
+
+    def getValue(self):
+        print("The name of the person is {} and the age is {}.".format(self.name,self.age))
+
+
+#Driver code goes here.
+name,age = input(),input()
+p = Person(name,age)
+p.getValue()
