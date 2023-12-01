@@ -1,0 +1,18 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def isValidIPv4(ipAddress):
+    # Write your code here.
+    ipv4 = ipAddress.split(".")
+    
+    if len(ipv4) != 4:
+        return False
+
+    for i in ipv4:
+        if not i.isnumeric():
+            return False
+        if int(i) < 0 or int(i) > 255:
+            return False
+    return True
