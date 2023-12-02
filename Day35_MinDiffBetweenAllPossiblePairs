@@ -1,0 +1,19 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from typing import *
+
+def minDiff(n : int, arr : List[int]) -> int:
+    # Write your code here.
+    arr.sort()
+    min_diff = float('inf')
+    for i in range(len(arr)):
+        for j in range(i + 1, len(arr)):
+            diff = abs(arr[i] - arr[j])
+            if diff < min_diff:
+                min_diff = diff
+
+    return min_diff
+    pass
