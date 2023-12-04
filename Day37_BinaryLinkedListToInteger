@@ -1,0 +1,19 @@
+'''
+    Following is the class structure of the Node class:
+    
+    class Node:
+        def __init__(self,data):
+            self.data = data
+            self.next = None
+'''
+
+
+def binaryToInteger(n: int, head) -> int:
+    # write your code here
+    p = head
+    ans = ''
+    while p != None:
+        ans += str(p.data)
+        p = p.next
+    return int(ans,2)
+    pass
