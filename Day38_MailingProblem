@@ -1,0 +1,11 @@
+def timeTakenToMail(keyboard: str, s: str) -> int:
+    # write your code here
+    sum = 0
+    pointer = 0
+    for i in range(0, len(s)):
+        for j in range(0, len(keyboard)):
+            if s[i] == keyboard[j]:
+                sum = sum + abs(j - pointer)
+                pointer = j
+                break
+    return sum
