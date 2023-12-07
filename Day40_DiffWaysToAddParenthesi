@@ -1,0 +1,23 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def diffWaysToCompute(s):
+    # Write your code here.
+    if s.isdigit():
+        return [int(s)]
+    res = []
+    for i, ch in enumerate(s):
+        if ch == "+" or ch == "-" or ch == "*":
+            a = diffWaysToCompute(s[0:i])
+            b = diffWaysToCompute(s[i+1:])
+            for x in a:
+                for y in b:
+                    if ch == "-":
+                        res.append(int(x)-int(y))
+                    elif ch == "+":
+                        res.append(int(x)+int(y))
+                    elif ch == "*":
+                        res.append(int(x)*int(y))
+    return res
