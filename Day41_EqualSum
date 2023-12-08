@@ -1,0 +1,21 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def equalSum(token):
+
+    # Write your code Here.
+    # Return an integer denoting the answer.
+
+    leftsum = 0
+    rightsum = 0
+    n = len(token)
+    for i in range(n):
+        rightsum += token[i]
+    for i in range(n):
+        rightsum -= token[i]
+        if leftsum == rightsum:
+            return i
+        leftsum += token[i]
+    return -1
