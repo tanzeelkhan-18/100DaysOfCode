@@ -1,0 +1,25 @@
+'''
+Following is the structure of the Node class already defined.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
+'''
+
+def reverseLinkedList(head):
+    # write your code here
+    if head == None or head.next == None:
+        return head
+    
+    prev = None
+    curr = head
+
+    while curr != None:
+        ahead = curr.next
+        curr.next = prev
+        prev = curr
+        curr = ahead
+    
+    return prev
