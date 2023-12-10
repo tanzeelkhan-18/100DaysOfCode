@@ -1,0 +1,24 @@
+from sys import *
+from collections import *
+from math import *
+
+def findRedundantBrackets(s:str):
+	# Write your code here.
+	# Return boolean True or False.
+	brackets = deque()
+	n = len(s)
+
+	for i in range(n):
+		if s[i] == '(' or s[i] == '+' or s[i] == '-' or s[i] == '*' or s[i] == '/':
+			brackets.append(s[i])
+		elif s[i] == ')':
+			isRedundant = True
+			while brackets[-1] != '(':
+				if brackets[-1] == '+' or brackets[-1] == '-' or brackets[-1] == '*' or brackets[-1] == '/':
+					isRedundant = False
+				brackets.pop()
+			brackets.pop()
+			if isRedundant == True:
+				return True
+	return False
+	pass
