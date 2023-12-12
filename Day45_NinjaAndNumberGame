@@ -1,0 +1,21 @@
+from os import *
+from sys import *
+from collections import *
+import math
+
+def numbers(arr):
+    # Write your Code here.
+    mod = int(1e9 + 7)
+    a = 1
+    
+    for num in arr:
+        a = (a*num) % mod
+    
+    b = math.gcd(arr[0], arr[1])
+
+    for num in arr[2:]:
+        b = math.gcd(b, num)
+    
+    ans = pow(a, b, mod)
+
+    return ans % mod
