@@ -1,0 +1,17 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def binaryGap(num):
+    # Write your code here.
+    ans = 0
+    n = -1000
+    for i in bin(num):
+        if i == "0":
+            n += 1
+        else:
+            ans = max(ans, n)
+            n = 1
+    return ans
+    pass
