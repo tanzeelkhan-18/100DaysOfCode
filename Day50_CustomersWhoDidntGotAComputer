@@ -1,0 +1,23 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def countCustomers(arr, k):
+    #    Write your code here.
+    lt = []
+    nt = []
+    nar = len(arr)
+    count = 0
+    for i in range(nar):
+        if arr[i] not in lt and arr[i] not in nt:
+            if k > 0:
+                lt.append(arr[i])
+                k = k - 1
+            else:
+                nt.append(arr[i])
+                count = count + 1
+        elif arr[i] in lt:
+            k = k + 1
+    return count
+    pass
