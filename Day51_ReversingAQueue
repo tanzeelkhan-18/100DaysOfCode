@@ -1,0 +1,19 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def reverse(q):
+    if q.empty():
+        return
+    
+    temp = q.get()
+    reverse(q)
+    q.put(temp)
+
+def reverseQueue(q):
+    # Write your code here
+    # Return a queue
+    reverse(q)
+    return q
+    pass
