@@ -1,0 +1,27 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def slotScore(original, guess):
+    # Write your code here.
+    original = list(original)
+    guess = list(guess)
+    score = 0
+    
+    for i in range(len(original)):
+        if original[i] == guess[i]:
+            score += 2
+            original[i] = '#'
+            guess[i] = '#'
+        
+    for i in range(len(guess)):    
+        if guess[i] != '#':
+            for j in range(len(original)):
+                if original[j] == guess[i]:
+                    score += 1
+                    original[j] = '#'
+                    guess[i] = '#'
+                    break
+    return score
+    pass
