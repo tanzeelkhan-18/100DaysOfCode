@@ -1,0 +1,29 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def longestDangerousRange(height, n):
+
+	# Write your code here
+	arr = []
+	equalnum = 0
+	for i in range(n-1):
+		if height[i] < height[i+1]:
+			arr.append('<')
+		elif height[i] > height[i+1]:
+			arr.append('>')
+		else:
+			arr.append('=')
+			equalnum += 1
+	if equalnum + 1 == n:
+		return 1
+	count = 1
+	maxTur = 0
+	for i in range(len(arr) - 1):
+		if (arr[i] == '<' and arr[i+1] == '>') or (arr[i] == '>' and arr[i+1] == '<'):
+			count += 1
+		else:
+			maxTur = max(maxTur, count)
+	return max(count, maxTur) + 1
+	pass
