@@ -1,0 +1,22 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+    public static int maxXor(int L, int R) {
+        
+        // Write your Code here
+        int lxr = L^R;
+        int msbpos = 0;
+        while (lxr>0) {
+            msbpos++;
+            lxr >>= 1;
+        }
+        int maxor = 0;
+        int two = 1;
+        while (msbpos --> 0) {
+            maxor += two;
+            two <<= 1;
+        }
+        return maxor;
+    }
+}
