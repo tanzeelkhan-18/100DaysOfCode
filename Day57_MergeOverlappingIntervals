@@ -1,0 +1,62 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+'''
+
+    intervals[i][0] = start point of i'th interval
+    intervals[i][1] = finish point of i'th interval
+
+'''
+
+# Function to check if the current interval overlaps with the other interval
+def isOverlap(minS, maxE, interval):
+
+    if (minS > interval[1] or maxE < interval[0]):
+        return False
+
+    return True
+
+
+def mergeIntervals(intervals):
+
+    n = len(intervals)
+    res = []
+    vis = [False for i in range(n)]
+
+    for i in range(n):
+        
+        # Check if vis[i] is equal to true
+        if (vis[i]):
+            continue
+
+        vis[i] = True
+        minS = intervals[i][0]
+        maxE = intervals[i][1]
+
+        # While there is new interval keep overlapping we will keep checking all other intervals again.
+        while (True):
+
+            cnt = 0
+
+            # Iterate j from 0 to n
+            for j in range(n):
+
+                if (vis[j] == False and isOverlap(minS, maxE, intervals[j])):
+                    vis[j] = True
+                    minS = min(minS, intervals[j][0])
+                    maxE = max(maxE, intervals[j][1])
+                    cnt += 1
+
+            # Check if cnt is equal to 0
+            if (cnt == 0):
+                break
+
+        interval = [minS, maxE]
+        res.append(interval)
+
+    # Sort the array res
+    res.sort()
+    
+    return res
