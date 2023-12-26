@@ -1,0 +1,30 @@
+def sumInRanges(arr, n, queries, q):
+
+    sum_array = [arr[0]]
+
+    for i in range(1,n):
+        sum_array.append(sum_array[-1] + arr[i])
+    sum_array.insert(0,0)
+    # print("cumulative_sum",sum_array)
+
+    ans = []
+    MOD = 1000000007
+
+    for que in queries:
+        s_index = que[0] - 1
+        e_index = que[1]
+
+        r1 = s_index % n
+        q1 = s_index // n
+
+        sum1 = sum_array[-1] * q1 + sum_array[r1]
+
+        r2 = e_index % n
+        q2 = e_index // n
+
+        sum2 = sum_array[-1] * q2 + sum_array[r2]
+
+        temp = (sum2 - sum1) %MOD
+        ans.append(temp)
+
+    return ans
