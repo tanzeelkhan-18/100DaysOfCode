@@ -1,0 +1,136 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from sys import stdin, setrecursionlimit
+setrecursionlimit(10**7)
+
+# Following is the linked list node structure:
+class Node:
+    def __init__(self, data):
+        
+        self.data = data
+        self.next = None
+
+def countDigits(head):
+    c = 0
+    while (head):
+        head = head.next
+        c += 1
+
+    return c
+
+def reverseList(head):
+
+    prev, curr = None, head
+    nextNode = None
+
+    while(curr != None):
+        nextNode = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nextNode
+
+    return prev
+
+def addTwoLists(first, second):
+    # Write your code here.
+    first = reverseList(first)
+    second = reverseList(second)
+
+    # Assign list with more digits to first list.
+    if (countDigits(first) < countDigits(second)):
+        first, second = second, first
+
+    carry = 0
+    head = first
+
+    # Iterate and add the nodes till second list does not reach end.
+    while (second != None):
+        first.data += second.data + carry
+        carry = first.data // 10
+        first.data %= 10
+
+        # If the list ends but a carry remains.
+        if (first.next == None and carry):
+            newNode = Node(carry)
+            first.next = newNode
+
+            first = first.next
+            carry = 0
+            break
+
+        first = first.next
+        second = second.next
+
+    # If there are more digits left to process in first list.
+    while (first != None):
+        first.data += carry
+        carry = first.data // 10
+        first.data %= 10
+
+        # If the list ends but a carry remains.
+        if (first.next == None and carry):
+            newNode = Node(carry)
+            first.next = newNode
+            break
+
+        first = first.next
+
+    # Reverse the list to get the final number.
+    head = reverseList(head)
+
+    # Return the answer list obtained after adding two lists.
+    return head
+
+
+# Taking input.
+def takeInput():
+
+    firstList = None
+    secondList = None
+
+    arr = list(map(int, stdin.readline().strip().split(" ")))
+    if(arr[0] != -1):
+
+        firstList = Node(arr[0])
+        last = firstList
+        for data in arr[1:]:
+
+            if(data == -1):
+                break
+
+            last.next = Node(data)
+            last = last.next
+
+    arr = list(map(int, stdin.readline().strip().split(" ")))
+    if(arr[0] != -1):
+
+        secondList = Node(arr[0])
+        last = secondList
+        for data in arr[1:]:
+
+            if(data == -1):
+                break
+
+            last.next = Node(data)
+            last = last.next
+
+        return firstList, secondList
+
+# Function to print the node values of the linked list.
+def printLinkedList(head):
+
+    while head:
+        print(head.data, end=' ')
+        head = head.next
+
+    print(-1)
+
+# Main.
+T = int(stdin.readline().strip())
+for i in range(T):
+    first, second = takeInput()
+    answerList = addTwoLists(first, second)
+    printLinkedList(answerList)
