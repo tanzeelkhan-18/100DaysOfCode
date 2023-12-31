@@ -1,0 +1,28 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def sort_subStack(stack, n):
+    if not stack:
+        stack.append(n)
+        return
+    if stack[-1] < n:
+        stack.append(n)
+        return
+    
+    x = stack.pop()
+    sort_subStack(stack, n)
+    stack.append(x)
+
+def sortStack(stack):
+    # given data structure is a python list 
+    # as list have all the similar operations available so use them
+    # Write your code here
+    if not stack:
+        return
+
+    n = stack.pop()
+    sortStack(stack)
+
+    sort_subStack(stack, n)
