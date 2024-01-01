@@ -1,0 +1,14 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def checkEvenPartitioning(n):
+    # Write your code here
+    # Return a Boolean
+    if n == 2 or n == 0:
+        return False
+    if n % 2 == 0:
+        return True
+    return False
+    pass
