@@ -1,0 +1,13 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def pushAtBottom(myStack: deque, x: int):
+	# Write your code here.
+	ans = []
+	ans.append(x)
+	for i in myStack:
+		ans.append(i)
+	return ans
+	pass
