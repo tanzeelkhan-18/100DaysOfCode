@@ -1,0 +1,34 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int[] rockPaperScissor(int k, String nezuko, String zenitsu) {
+		// Write your code here.
+		int ans[] = new int[2];
+		int countn = 0;
+		int countz = 0;
+		int i = 0;
+
+		while (nezuko.length() < k) {
+			nezuko += nezuko;
+		}
+		while (zenitsu.length() < k) {
+			zenitsu += zenitsu;
+		}
+		while (i < k) {
+			char n = nezuko.charAt(i);
+			char z = zenitsu.charAt(i);
+			if ((n == 'P' && z == 'R') || (n == 'S' && z == 'P') || (n == 'R' && z == 'S')) {
+				countn++;
+			}
+			else if ((z == 'P' && n == 'R') || (z == 'S' && n == 'P') || (z == 'R' && n == 'S')) {
+				countz++;
+			}
+			i++;
+		}
+
+		ans[0] = countn;
+		ans[1] = countz;
+
+		return ans;
+	}
+}
