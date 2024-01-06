@@ -1,0 +1,27 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def ninjaGarden(flowers, n, k):
+	# Write your code here
+	l = [None]*n
+	diff = -1
+	for i in range(n):
+		l[flowers[i] - 1] = i + 1
+	left = 0
+	right = k + 1
+	ans = n + 1
+	i = 0
+	while (right < n):
+		if (l[i] < l[left] or l[i] <= l[right]):
+			if (i == right):
+				ans = min(ans, max(l[left], l[right]))
+			left = i
+			right = k + 1 + i
+		i += 1
+	if ans == n+1:
+		return -1
+	else:
+		return ans
+	pass
