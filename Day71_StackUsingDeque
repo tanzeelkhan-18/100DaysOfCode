@@ -1,0 +1,49 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+class Stack:
+    # Initialize your data structure.
+    def __init__(self):
+        self.d = deque()
+        pass
+
+    # Pushes 'X' into the stack. Returns true if it gets pushed into the stack, and false otherwise.
+    def push(self, x):
+        # Write your code here
+        if x:
+            self.d.append(x)
+            return True
+        return False
+        pass
+
+    # Pops top element from Stack. Returns -1 if the stack is empty, otherwise returns the popped element.
+    def pop(self):
+        # Write your code here
+        if len(self.d) == 0:
+            return -1
+        x = self.d[-1]
+        self.d.pop()
+        return x
+        pass
+
+    # Returns the topmost element of the stack. In case the stack is empty, it returns -1.
+    def top(self):
+        # Write your code here
+        if len(self.d) == 0:
+            return -1
+        return self.d[-1]
+        pass
+
+    # Returns true if the stack is empty, otherwise false.
+    def isEmpty(self):
+        # Write your code here
+        return len(self.d) == 0
+        pass
+
+    # Returns the number of elements currently present in the stack.
+    def size(self):
+        # Write your code here
+        return len(self.d)
+        pass
