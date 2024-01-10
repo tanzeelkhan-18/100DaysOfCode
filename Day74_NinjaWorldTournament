@@ -1,0 +1,20 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def calculateScore(matchResult, n):
+    # Write your code here.
+    stack = []
+    for i in range(n):
+        if matchResult[i] == '+':
+            num1, num2 = stack[-2], stack[-1]
+            stack.append(num1 + num2)
+        elif matchResult[i] == 'D':
+            stack.append(stack[-1]*2)
+        elif matchResult[i] == 'C':
+            stack.pop()
+        else:
+            stack.append(int(matchResult[i]))
+    return sum(stack)
+    pass
