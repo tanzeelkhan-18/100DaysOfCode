@@ -1,0 +1,19 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+    public static int beautifulIndex(int N, int[] A)
+    {
+        // Write your code here.
+        int suf = 0;
+        int pref = Arrays.stream(A).sum();
+        for (int i = 0; i < N; i++){
+            pref = pref - A[i];
+            if (suf == pref){
+                return i+1;
+            }
+            suf = suf + A[i];
+        }   
+        return -1;
+    }
+}
