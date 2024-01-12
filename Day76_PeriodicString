@@ -1,0 +1,8 @@
+public class Solution {
+    public static boolean isPeriodic(String s) {
+        // Define 'T'
+        String t = (s + s).substring(1, 2 * s.length() - 1);
+        // Check if 'S' is a substring of 'T'.
+        return t.contains(s);
+    }
+}
