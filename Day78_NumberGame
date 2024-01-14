@@ -1,0 +1,11 @@
+#include <bits/stdc++.h> 
+string gameWinner(vector<int> &arr, int n) {
+	// Write your code here
+	int max = *std::max_element(arr.begin(), arr.end());
+	int rem = max - n;
+	if (rem % 2 != 1) {
+		return "Bob";
+	} else {
+		return "Alice";
+	}
+}
