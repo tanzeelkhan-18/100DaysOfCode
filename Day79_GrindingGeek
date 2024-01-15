@@ -1,0 +1,20 @@
+class Solution{
+    public:
+    int max_courses(int n, int total, vector<int> &cost)
+    {
+        //Code Here
+        vector<int> curr(total + 1, 0);
+        for (int ind = n-1; ind >= 0; ind--) {
+            for(int tot = total; tot >= 0; tot--) {
+                int notBuy = curr[tot];
+                int buy = 0;
+                if (cost[ind] <= tot) {
+                    int x = tot - cost[ind] + floor(0.9*cost[ind]);
+                    buy = 1 + curr[x];
+                }
+                curr[tot] = max(buy, notBuy);
+            }
+        }
+        return curr[total];
+    }
+};
