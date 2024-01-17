@@ -1,0 +1,37 @@
+#User function Template for python3
+
+class Solution:
+    def permutations(self, h, arr, index):
+        if index==len(arr):
+            h.add(tuple(arr))
+            return
+        for i in range(index,len(arr)):
+            arr[index],arr[i]=arr[i],arr[index]
+            self.permutations(h,arr,index+1)
+            arr[index],arr[i]=arr[i],arr[index]
+    def uniquePerms(self, arr, n):
+        # code here 
+        h,ans=set(),[]
+        self.permutations(h,arr,0)
+        for i in h: ans.append(i)
+        ans.sort()
+        return ans
+
+
+#{ 
+ # Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        n=int(input())
+        arr=list(map(int,input().split()))
+        
+        ob = Solution()
+        res = ob.uniquePerms(arr,n)
+        for i in range(len(res)):
+            for j in range(n):
+                print(res[i][j],end=" ")
+            print()
+# } Driver Code Ends
